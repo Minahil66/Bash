@@ -12,14 +12,30 @@ echo "========================================================"
 echo ""
 display(){
 echo -ne "\033[12;OH\033[J"
+RED=$(tput setaf 1)
 
-cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{printf "%.0f", $2}')
+cpu_d=$(RED)CPU USAGE DANGROUSLY HIGH! ${cpu_usage}
+
+interface=$(ip route | awk '/default/ {print $5}')
+
+rx_bytes=$(cat /sys/class/net/${interface}/statistics/rx_bytes)
+
+tx_bytes=$(cat /sys/class/net/${interface}/statistics/tx_bytes)
+echo "Down: $(numfmt --to=iec $rx_bytes)"
+echo "Up: $(numfmt --to=iec $tx_bytes)"
+
+process=$(ps aux --sort=-%cpu | head -6 | awk '{print $2, $3, $4, $11}'
+
+cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{printf "%.0f", $2}') 
+
 echo -n "CPU: ["
 for ((i=1;i<=10;i++));do
  if [ $i -le $((cpu_usage/10)) ];then
   echo -n "▓"
  else
   echo -n "░"
+if [$(cpu_usage) -gt 80]; then
+  echo "$(cpu_d)"
 fi
 done
 echo "] ($cpu_usage)%"
@@ -32,11 +48,11 @@ for ((j=1;j<=10;j++));do
   echo -n "▓"
  else
   echo -n "░"
-fi
+fi 
 done
 echo "] ($memory_usage)%"
-echo ""
 
+echo ""
 disk_usage=$(df -h / | awk 'NR==2{print $5}'| tr -d '%')
 echo -n "DISK: ["
 for k in {1..10};do
@@ -49,9 +65,7 @@ done
 echo "] ($disk_usage)%"
 echo ""
 }
-
 while true;do
 display
 sleep 1
 done
-
