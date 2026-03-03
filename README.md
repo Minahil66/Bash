@@ -1,2 +1,2 @@
 # Bash
-Bash scripts
+Bash scripts/practice
