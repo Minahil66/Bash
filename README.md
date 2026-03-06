@@ -1,4 +1,4 @@
 # Bash
 Bash scripts/practice
 
-Exercism.org
+exercism.org
