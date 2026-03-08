@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 n="$*"
 n="$(echo -n "$n" | sed 's/[[:space:]]*$//')"
 if [[ -z "${n//[[:space:]]/}" ]]; then
