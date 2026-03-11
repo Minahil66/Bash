@@ -1,26 +1,34 @@
 #!/usr/bin/env bash
-n="$*"
-len=${#n} # length of string
-flag=false
-seen=""
-if [[ -z "${n//}" ]]; then #or "${n//[[:space:]]/}"
-echo "true"
-exit 0
-fi
-for((i=0;i<len;i++)); do
-char="${n:i:1}"
-if [[ "${n:$i:1}" == "-" ]] || [[ "${n:i:1}" == " " ]]; then
-continue
-fi
-char_lower="${char,,}" #lower the character (case) ^^ 4 upper
- if [[ "$seen" == *"$char_lower"* ]]; then #check if char appears anywhere in the seen
- flag=true
- break 
- fi
- seen+="$char_lower" 
+n=$1
+bin=()
+action=()
+bin=$(echo "obase=2; $n" | bc ) #basic calc
+ while(( ${#bin}<5)); do
+ bin="0$bin"
  done
- if [[ $flag == true ]]; then
- echo "false"
- else 
- echo "true"
+ if [[ "${bin:4:1}" == "1" ]]; then 
+ action+=("wink") 
  fi
+ if [[ "${bin:3:1}" == "1" ]]; then 
+ action+=("double blink") 
+ fi
+ if [[ "${bin:2:1}" == "1" ]]; then 
+ action+=("close your eyes") 
+ fi
+ if [[ "${bin:1:1}" == "1" ]]; then 
+ action+=("jump")
+ fi
+ if [[ "${bin:0:1}" == "1" ]]; then
+    reversed=()
+    for ((i=${#action[@]}-1; i>=0; i--)); do
+        reversed+=("${action[i]}")
+    done
+    action=("${reversed[@]}")
+fi
+len=${#action[@]}
+for ((i=0;i<len; i++)); do
+echo -n "${action[i]}"
+if (( i < len-1)); then
+echo -n ","
+fi
+done
