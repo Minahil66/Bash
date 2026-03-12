@@ -1,7 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash
 x=$1
 y=$2
-
+if [[ ! "$x" =~ ^-?[0-9]+\.?[0-9]*$ ]] || [[ ! "$y" =~ ^-?[0-9]+\.?[0-9]*$ ]]; then 
+echo "there is_some_output"
+exit 1
+fi
 if [[ $# -lt 2 ]]; then
 echo "there is_some_output"
 exit 1
