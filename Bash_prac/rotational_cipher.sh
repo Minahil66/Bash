@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 c=$1
 k=$2
 len=${#c}
