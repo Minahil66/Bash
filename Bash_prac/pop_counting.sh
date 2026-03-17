@@ -1,5 +1,4 @@
 #!/bin/bash
-
 n=$1
 bin=""
 count=0
