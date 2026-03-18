@@ -8,7 +8,7 @@ G=0
 T=0
 for((i=0;i<len;i++)); do
 if [[ "${n:i:1}" == "A" ]]; then
-((A++))
+((A++)) 
 elif [[ "${n:i:1}" == "C" ]]; then
 ((C++))
 elif [[ "${n:i:1}" == "G" ]]; then
@@ -21,7 +21,7 @@ exit 1
 fi
 done
 echo "A: $A"
-echo "C: $C"
+echo "C: $C
 echo "G: $G"
 echo "T: $T"
 
@@ -29,7 +29,7 @@ echo "T: $T"
 
  #!/bin/ bash
 n="$1"
-if [[ "$n" =~ [^ACGT] ]] && [[ -n "$n" ]]; then
+if [[ "$n" =~ [^ACGT] ]] && [[ -n "$n" ]]; then  #if any of the characters are NOT ACGT AND the stirng is -Not empty then error/ if string empty we move on
     echo "Invalid nucleotide in strand"
     exit 1
     fi
