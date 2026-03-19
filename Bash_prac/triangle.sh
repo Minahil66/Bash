@@ -5,7 +5,7 @@ b=$3
 c=$4
 res=""
 compare() {
-[[ $(echo "$1" | bc -l) == 1 ]]
+[[ $(echo "$1" | bc -l) == 1 ]] #bc for float
 }
 if compare "$a + $b <= $c" ||  compare "$a + $c <= $b" || compare "$b + $c <= $a"; then
 echo "false" && exit 0
