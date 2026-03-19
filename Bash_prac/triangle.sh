@@ -1,20 +1,17 @@
 #!/bin/bash
-n="$1"
-a=$2
-b=$3
-c=$4
+n=$1
 res=""
 compare() {
 [[ $(echo "$1" | bc -l) == 1 ]] #bc for float
 }
-if compare "$a + $b <= $c" ||  compare "$a + $c <= $b" || compare "$b + $c <= $a"; then
+if compare "$2 + $3 <= $4" ||  compare "$2 + $4 <= $3" || compare "$3 + $4 <= $2"; then
 echo "false" && exit 0
 fi
-if compare "$a == 0 && $b == 0 && $c == 0"; then
+if compare "$2 == 0 && $3 == 0 && $4 == 0"; then
 echo "false" && exit 0
 fi
-compare "$a == $b && $a == $c" && res="equilateral" || 
-{ compare "$a == $b || $a == $c || $b == $c" && res="isosceles" || res="scalene"; }
+compare "$2 == $3 && $2 == $4" && res="equilateral" || 
+{ compare "$2 == $3 || $2 == $4 || $3 == $4" && res="isosceles" || res="scalene"; }
 if [[ "$res" == "equilateral" && "$n" == "isosceles" ]]; then
 echo "true" && exit 0
 fi
