@@ -1,4 +1,4 @@
-#!/bin/bash/
+#!/bin/bash
 colors=(black brown red orange yellow green blue violet grey white)
 col=$2
 if [[ $1 == "code" ]]; then
