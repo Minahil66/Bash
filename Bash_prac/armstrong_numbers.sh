@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/ bash
 num=$1
 mapfile -t digits < <(echo "$num" | fold -w1)
 len=${#digits[@]}
