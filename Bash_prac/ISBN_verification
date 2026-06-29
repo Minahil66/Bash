@@ -1,4 +1,4 @@
-#!/user/bin/bash
+#!/bin/bash
  isbn="$1"
  ISBN=$(echo "$isbn" | tr -d  -)
  len=${#ISBN}
