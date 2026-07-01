@@ -1,8 +1,8 @@
 #!/bin/bash
 white="$2"
 black="$4"
-IFS=',' read b1 b2 <<< "$black"
-IFS=',' read w1 w2 <<< "$white"
+IFS=',' read -r b1 b2 <<< "$black"
+IFS=',' read -r w1 w2 <<< "$white"
 if (( b1 < 0 || w1 < 0 )); then
 echo "row not positive"
 exit 1
