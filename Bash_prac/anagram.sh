@@ -6,7 +6,6 @@ words="$2"
 sort_tar=$( echo "${target,,}" | grep -o . | sort | tr -d '\n' )
 read -ra list <<< "$words"
 declare -a matched
-len=${#list[@]}
 
 for word in "${list[@]}"; do
 if [[ ${#target} -ne ${#word} ]]; then
